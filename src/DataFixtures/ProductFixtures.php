@@ -16,11 +16,22 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setTitle('Voyage en Italie');
         $product->setPrice(1000);
         $product->setDescription('Voyage en Italie');
-        $product->setCategory($this->getReference(CategoryFixtures::CATEGORY_NAME_REFERENCE));
+        $product->setCategory($this->getReference('TRAVELS'));
         $manager->persist($product);
 
-        // $product = new Product();
-        // $manager->persist($product);
+        $travelDonkey = new Product();
+        $travelDonkey->setTitle('Voyage en Italie avec des anes');
+        $travelDonkey->setPrice(2000);
+        $travelDonkey->setDescription('Voyage en Italie avec des anes');
+        $travelDonkey->setCategory($this->getReference('DONKEYS'));
+        $manager->persist($travelDonkey);
+
+        $toy = new Product();
+        $toy->setTitle('G.I Joe');
+        $toy->setPrice(10);
+        $toy->setDescription('G.I Joe');
+        $toy->setCategory($this->getReference('TOYS'));
+        $manager->persist($toy);
 
         $manager->flush();
     }
