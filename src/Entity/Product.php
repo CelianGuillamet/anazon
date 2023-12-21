@@ -18,7 +18,7 @@ class Product
     private ?string $title = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Category $category = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

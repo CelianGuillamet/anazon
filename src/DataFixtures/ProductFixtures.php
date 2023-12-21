@@ -31,8 +31,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $toy->setPrice(10);
         $toy->setDescription('G.I Joe');
         $toy->setCategory($this->getReference(CategoryFixtures::CATEGORY_TOYS_REFERENCE));
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }
