@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes des catégories
+{% endblock %}
+
+{% block body %}
+	<h1>Listes des catégories</h1>
+	{% for category in categories %}
+		<h2>{{category.name}}</h2>
+		{% if category.parent %}
+			<p>enfant de
+			{{ category.parent.name }}</p>
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}
