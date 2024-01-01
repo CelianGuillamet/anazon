@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,6 +21,19 @@ class CategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Category::class);
     }
+    public function getListQueryBuilder(?string $search): QueryBuilder
+    {
+
+        $qb =  $this->createQueryBuilder('c');
+        if (!$search) {
+            return $qb;
+        }
+        $qb->andWhere('c.name LIKE :search')
+            ->setParameter('search', '%' . $search . '%');
+
+        return $qb;
+    }
+
 
     //    /**
     //     * @return Category[] Returns an array of Category objects

@@ -6,16 +6,33 @@
 {% block body %}
 	<h1>Listes des catégories</h1>
 	<a class="btn btn-primary" href="{{ path('app_categories_new') }}">Ajouter une catégorie</a>
-	{% for category in categories %}
-		<h2>
-			<a href="{{ path('app_categories_show', { id: category.id} )}} ">
-				{{category.name}}
-			</a>
-		</h2>
-		{% if category.parent %}
-			<p>enfant de
-				{{ category.parent.name }}</p>
-		{% endif %}
-	{% endfor %}
+	{{form(form)}}
+		<table>
+			<tr>
+				{# sorting of properties based on query components #}
+				<th>{{ knp_pagination_sortable(categories, 'Id', 'c.id') }}</th>
+				<th {% if categories.isSorted('c.name') %} class="sorted" {% endif %}>
+					{{ knp_pagination_sortable(categories, 'Name', 'c.name') }}
+				</th>
+			</tr>
 
-{% endblock %}
+			{# table body #}
+			{% for category in categories %}
+				<tr {% if loop.index is odd %} class="color" {% endif %}>
+					<td>{{ category.id }}</td>
+					<td>
+						<a href="{{ path('app_categories_show', { id: category.id} )}} ">
+							{{category.name}}
+						</a>
+					</td>
+
+				</tr>
+			{% endfor %}
+		</table>
+
+
+		<div class="navigation">
+			{{ knp_pagination_render(categories) }}
+		</div>
+
+	{% endblock %}
