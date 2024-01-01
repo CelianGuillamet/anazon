@@ -21,7 +21,7 @@
 				<tr {% if loop.index is odd %} class="color" {% endif %}>
 					<td>{{ category.id }}</td>
 					<td>
-						<a href="{{ path('app_categories_show', { id: category.id} )}} ">
+						<a href="{{ path('app_categories_show', { slug: category.slug} )}} ">
 							{{category.name}}
 						</a>
 					</td>

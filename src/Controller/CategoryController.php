@@ -33,7 +33,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categories/{id<^\d+$>}', name: 'app_categories_show')]
+    #[Route('/categories/{slug}', name: 'app_categories_show', priority: -2)]
     public function show(Category $category): Response
     {
         return $this->render('category/show.html.twig', [
@@ -66,7 +66,9 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
-            return $this->redirectToRoute('app_categories');
+            return $this->redirectToRoute('app_categories_show', [
+                'slug' => $category->getSlug()
+            ]);
         }
 
         return $this->render('category/edit.html.twig', [
