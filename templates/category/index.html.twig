@@ -4,6 +4,15 @@
 {% endblock %}
 
 {% block body %}
+	{% for i in 1..5 %}
+		<div data-controller="faq">
+			<h2 data-action="click->faq#toggle">Question{{i}}</h2>
+			<div data-faq-target="answer" style="display: none">
+				lorem ohfoisidghiuqdn ivun ivqsoivj adijhdsq bvpiuqndpivnqpiued ngvpi dcpivbipueb duipvbipufbd
+			</div>
+		</div>
+	{% endfor %}
+
 	<h1>Listes des catégories</h1>
 	<a class="btn btn-primary" href="{{ path('app_categories_new') }}">Ajouter une catégorie</a>
 	{{form(form)}}
